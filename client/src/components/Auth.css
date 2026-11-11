@@ -1,0 +1,127 @@
+.auth-container {
+  min-height: calc(100vh - 40px);
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 72px 20px 40px;
+  background: #f7f7f5;
+}
+
+.auth-form {
+  width: min(100%, 400px);
+  padding: 36px;
+  background: #ffffff;
+  border: 1px solid #e5e5e2;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(37, 39, 38, 0.06);
+}
+
+.auth-form h1 {
+  margin: 0 0 28px;
+  color: #252726;
+  font-size: 1.7rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+.auth-field {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  margin-bottom: 18px;
+}
+
+.auth-field label {
+  color: #4f5551;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.auth-field input {
+  width: 100%;
+  padding: 11px 12px;
+  border: 1px solid #cfd3cf;
+  border-radius: 7px;
+  outline: none;
+  background: #ffffff;
+  color: #252726;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.auth-field input::placeholder {
+  color: #9a9f9b;
+}
+
+.auth-field input:focus {
+  border-color: #687c6e;
+  box-shadow: 0 0 0 3px rgba(104, 124, 110, 0.14);
+}
+
+.auth-message {
+  margin: 2px 0 16px;
+  padding: 10px 12px;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  line-height: 1.4;
+}
+
+.auth-message-error {
+  color: #9f2d2d;
+  background: #fff3f2;
+}
+
+.auth-message-success {
+  color: #356342;
+  background: #f1f8f2;
+}
+
+.auth-submit,
+.auth-switch {
+  width: 100%;
+  border-radius: 7px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.auth-submit {
+  padding: 11px 16px;
+  border: 1px solid #53675a;
+  background: #53675a;
+  color: #ffffff;
+  transition: background-color 0.15s ease, border-color 0.15s ease;
+}
+
+.auth-submit:hover {
+  border-color: #435449;
+  background: #435449;
+}
+
+.auth-submit:focus-visible,
+.auth-switch:focus-visible {
+  outline: 3px solid rgba(104, 124, 110, 0.3);
+  outline-offset: 2px;
+}
+
+.auth-switch {
+  margin-top: 12px;
+  padding: 9px 16px;
+  border: 1px solid transparent;
+  background: transparent;
+  color: #53675a;
+  transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+.auth-switch:hover {
+  background: #f1f4f1;
+  color: #435449;
+}
+
+@media (max-width: 480px) {
+  .auth-container {
+    padding: 32px 16px;
+  }
+
+  .auth-form {
+    padding: 28px 22px;
+  }
+}
