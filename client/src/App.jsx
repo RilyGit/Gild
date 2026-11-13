@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useState } from 'react';
 import './App.css';
 import Auth from './components/Auth';
+import API_URL from './config/api';
 
 function App(){
   const [token, setToken] = useState(localStorage.getItem('token'));
@@ -39,7 +40,7 @@ const GetBalance = useCallback(async () => {
   if (!token) return;
 
   try{
-    const res = await fetchWithAuth("http://localhost:3100/getBalance")
+    const res = await fetchWithAuth(`${API_URL}/getBalance`)
     if (!res.ok) throw new Error(`Не удалось загрузить баланс: ${res.status}`);
     const data = await res.json()
     setBalance(data.balance);
@@ -52,7 +53,7 @@ const GetTransactions = useCallback(async () => {
   if (!token) return;
 
   try{
-    const res = await fetchWithAuth("http://localhost:3100/getTransactions");
+    const res = await fetchWithAuth(`${API_URL}/getTransactions`);
     if (!res.ok) throw new Error(`Не удалось загрузить транзакции: ${res.status}`);
     const data = await res.json()
     setTransactions(data);
@@ -66,7 +67,7 @@ useEffect(() => {
 
   const fetchData = async () => {
     try {
-      const res = await fetchWithAuth("http://localhost:3100/Getcategory");
+      const res = await fetchWithAuth(`${API_URL}/Getcategory`);
       if (!res.ok) throw new Error(`Не удалось загрузить категории: ${res.status}`);
       const data = await res.json();
       setCategories(data);
@@ -89,7 +90,7 @@ const selectedCategory = filteredCategories.some((item) => item.category === cur
 
 const ButtonCompleted = async () => {
   if (amount >= 1 && activePressing && categories.length > 0) {
-    const res = await fetchWithAuth("http://localhost:3100/Addtransaction", {
+    const res = await fetchWithAuth(`${API_URL}/Addtransaction`, {
       method: "POST",
       body: JSON.stringify({ 
       sum: Number(amount),      
@@ -111,13 +112,13 @@ const ButtonCompleted = async () => {
   if (!newCategory.trim()) return;
 
   try {
-    const res = await fetchWithAuth("http://localhost:3100/Addcategory", {
+    const res = await fetchWithAuth(`${API_URL}/Addcategory`, {
       method: "POST",
       body: JSON.stringify({ category: newCategory.trim(), type: activePressing })
     });
 
     if (res.ok) {
-      const catRes = await fetchWithAuth("http://localhost:3100/Getcategory");
+      const catRes = await fetchWithAuth(`${API_URL}/Getcategory`);
       if (!catRes.ok) throw new Error(`Не удалось обновить категории: ${catRes.status}`);
       const catData = await catRes.json();
       setCategories(catData);
@@ -138,7 +139,7 @@ const ButtonCompleted = async () => {
 
   const DeleteButtonCategory = async (id) => {
     try{
-    const res = await fetchWithAuth("http://localhost:3100/Deltransaction" , {
+    const res = await fetchWithAuth(`${API_URL}/Deltransaction` , {
       method: "DELETE" ,
       body: JSON.stringify({id: id})
     })

@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import './Auth.css';
+import API_URL from '../config/api';
 
 const technicalErrorMessage = 'Сталася технічна проблема. Спробуйте ще раз пізніше.';
 
@@ -17,7 +18,7 @@ const handleSubmit = async (event) => {
 
   try {
     const endpoint = isLogin ? 'login' : 'register';
-    const res = await fetch(`http://localhost:3100/api/auth/${endpoint}`, {
+    const res = await fetch(`${API_URL}/api/auth/${endpoint}`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ Email: email, Password: password }),
