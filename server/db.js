@@ -1,5 +1,5 @@
 const { MongoClient, ObjectId } = require("mongodb");
-const url = "mongodb://localhost:27017/";
+const url = process.env.MONGO_URI || "mongodb://127.0.0.1:27017/";
 const mongoClient = new MongoClient(url);
 
 async function connectDB() {
@@ -7,7 +7,8 @@ async function connectDB() {
         await mongoClient.connect();
         console.log("База успішно підключена)");
     } catch (e) {
-        console.log("БД:", e);
+        console.error("БД:", e);
+        throw e;
     }
 }
 function getCollection() {

@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 const express = require('express'); 
 const cors = require('cors');
 const dbOperations = require('./db');
@@ -10,8 +12,8 @@ app.use(cors());
 
 app.use('/api/auth', authRouter);
 
-const PORT = 3100;
-const HOST = '127.0.0.1';
+const PORT = process.env.PORT || 3100;
+const HOST = '0.0.0.0';
 const correctType = ['income', 'expense']
 
 app.post("/Addtransaction", checkAuth, async (req, res) => {
@@ -91,9 +93,14 @@ app.get("/Getcategory", checkAuth, async (req, res) => {
 })
 
 async function startServer() {
-    await dbOperations.connectDB(); 
-    app.listen(PORT, HOST, () => {
-        console.log(`Server started at http://${HOST}:${PORT}`);
-    });
+    try {
+        await dbOperations.connectDB();
+        app.listen(PORT, HOST, () => {
+            console.log(`Server started at http://${HOST}:${PORT}`);
+        });
+    } catch (error) {
+        console.error('Failed to start server:', error);
+        process.exitCode = 1;
+    }
 }
 startServer();
