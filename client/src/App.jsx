@@ -165,8 +165,20 @@ const ButtonCompleted = async () => {
       <h3>Ваш баланс: {Balance} грн</h3>
 
       <div className="type-buttons">
-        <button onClick={() => setActivePressing("income")}>Дохід</button>
-        <button onClick={() => setActivePressing("expense")}>Росхід</button>
+        <button
+          className={activePressing === "income" ? "active income-button" : "income-button"}
+          onClick={() => setActivePressing("income")}
+          aria-pressed={activePressing === "income"}
+        >
+          Дохід
+        </button>
+        <button
+          className={activePressing === "expense" ? "active expense-button" : "expense-button"}
+          onClick={() => setActivePressing("expense")}
+          aria-pressed={activePressing === "expense"}
+        >
+          Витрати
+        </button>
       </div>
 
       <input

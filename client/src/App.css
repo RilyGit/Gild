@@ -85,6 +85,27 @@
   color: #101828;
   background-color: #ffffff;
 }
+
+.type-buttons button.active {
+  color: #ffffff;
+}
+
+.type-buttons .income-button.active {
+  background-color: #079455;
+}
+
+.type-buttons .income-button.active:hover {
+  background-color: #067647;
+}
+
+.type-buttons .expense-button.active {
+  background-color: #d92d20;
+}
+
+.type-buttons .expense-button.active:hover {
+  background-color: #b42318;
+}
+
 .Panel input, 
 .Panel select {
   width: 100%;
